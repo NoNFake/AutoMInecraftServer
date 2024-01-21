@@ -41,13 +41,13 @@ settings() {
 
 first_start() {
     sudo ufw allow 25565/tcp
-	sudo ufw allow 25565/udp
+    sudo ufw allow 25565/udp
 	
-	sudo ufw allow 25575/tcp
-	sudo ufw allow 25575/udp
+    sudo ufw allow 25575/tcp
+    sudo ufw allow 25575/udp
 	
-	sudo ufw allow 22/tcp
-	sudo ufw allow 22/udp
+    sudo ufw allow 22/tcp
+    sudo ufw allow 22/udp
 	
     java -Xms1024M -Xmx1024M -jar *.jar nogui
     sed -i.orig 's/eula=false/eula=true/g' eula.txt
