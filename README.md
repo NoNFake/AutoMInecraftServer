@@ -40,12 +40,22 @@ settings() {
 }
 
 first_start() {
-    ip_address=$(curl -s https://api64.ipify.org?format=json | grep -oP '\"ip\"\s*:\s*\"\K[^\"]+')
-    sed -i.orig "s/server-ip=/server-ip=${ip_address}/g" server.properties
-
+    sudo ufw allow 25565/tcp
+	sudo ufw allow 25565/udp
+	
+	sudo ufw allow 25575/tcp
+	sudo ufw allow 25575/udp
+	
+	sudo ufw allow 22/tcp
+	sudo ufw allow 22/udp
+	
     java -Xms1024M -Xmx1024M -jar *.jar nogui
     sed -i.orig 's/eula=false/eula=true/g' eula.txt
     sed -i.orig 's/online-mode=true/online-mode=false/g' server.properties
+	
+	ip_address=$(curl -s https://api64.ipify.org?format=json | grep -oP '\"ip\"\s*:\s*\"\K[^\"]+')
+    sleep 5
+	sed -i.orig "s/server-ip=/server-ip=${ip_address}/g" server.properties
 }
 
 start() {
@@ -70,17 +80,25 @@ check() {
             echo -e "${CYAN_COLOR}Is this your first run?${RESET_COLOR}"
             echo 1 > startup.txt
             settings
+			
+			
+			echo "Your IP: "
+			curl -s https://api64.ipify.org?format=json | grep -oP '\"ip\"\s*:\s*\"\K[^\"]+'
+			
             first_start
-            check
+            
+			
         else
-            echo "Starting serv"
+            echo "Starting server"
+			echo "Your IP: "
+			curl -s https://api64.ipify.org?format=json | grep -oP '\"ip\"\s*:\s*\"\K[^\"]+'
+			
             start
         fi
     else
         echo -e "${RED_COLOR}\nFile could not be found.${CYAN_COLOR} Is this your first run?${RESET_COLOR}"
     fi
 }
-
 
 main() {
     logo
