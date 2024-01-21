@@ -3,6 +3,13 @@
 #include <sstream>
 #include "dependencies/include/nlohmann/json.hpp"
 
+/*
+     Hah, I can write this code in bash, but idk what I'm doing.
+
+*HAHAHAHAHAHAHAHSHS*
+
+*/
+
 
 using namespace std;
 using json = nlohmann::json;
