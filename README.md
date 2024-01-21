@@ -8,7 +8,7 @@
 <h1>How to build on Linux</h1>
 How to build on F*cking Penguin?
 
-`g++ -o myServer mian.cpp -lstdc++fs -Idependencies/include`
+```g++ -o myServer mian.cpp -lstdc++fs -Idependencies/include```
 
 
 <h2>Code for brush</h2>
