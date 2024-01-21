@@ -48,6 +48,8 @@ first_start() {
     
     sudo ufw allow 22/tcp
     sudo ufw allow 22/udp
+
+    sudo ufw enable
     
     java -Xms1024M -Xmx1024M -jar *.jar nogui
     sed -i.orig 's/eula=false/eula=true/g' eula.txt
