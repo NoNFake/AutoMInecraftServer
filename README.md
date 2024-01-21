@@ -4,7 +4,6 @@
 -Yes, I know what I can write on BASH. Why not?
 ....
 
-
 <h1>How to build on Linux</h1>
 How to build on F*cking Penguin?
 
