@@ -29,7 +29,7 @@ logo() {
 }
 
 settings() {
-    read -p "${GREEN_COLOR}1. The maximum amount of memory (Xmx): " Xmx
+    read -p "1. The maximum amount of memory (Xmx): " Xmx
     read -p "2. Initial memory size (Xms): " Xms
     read -p "3. With gui? true | false: " gui
 
