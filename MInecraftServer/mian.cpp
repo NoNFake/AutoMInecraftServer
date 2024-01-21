@@ -57,7 +57,9 @@ class Server {
 
 		void first_start()
 		{			
-			system("java -Xms1024M -Xmx1024M - jar *.jar nogui");
+			system("java -Xms1024M -Xmx1024M -jar *.jar nogui");
+
+			
 			system("sed -i.orig 's/eula=false/eula=true/g' eula.txt");
 			system("sed -i.orig 's/online-mode=true/online-mode=false/g' server.properties");
 		}
@@ -73,6 +75,9 @@ class Server {
 			fileInput.open("settings.json");
 			fileInput >> objson;
 
+
+			system("curl -s https://api64.ipify.org?format=json | grep -oP '\"ip\"\s*:\s*\"\K[^\"]+'");
+			cout << ":25565";
 			
 			
 			int Xms = objson["Xms"];
@@ -89,12 +94,9 @@ class Server {
 				command = "java -Xms" + to_string(Xms) + "M -Xmx" + to_string(Xmx) + "M -jar *.jar nogui";
 			}
 			
-
-
 			system(command.c_str());
 
-			system("curl -s https://api64.ipify.org?format=json | grep -oP '\"ip\"\s*:\s*\"\K[^\"]+'");
-			cout << ":25565";
+			
 		}
 
 
@@ -108,16 +110,23 @@ class Server {
 				if (value == 0) 
 				{	
 					cout << CYAN_COLOR << "Is this your first run?\n" << RESET_COLOR << endl;
-					// first_start();
-					settings();
-
+					
 					ofstream outfile("startup.txt");
 					outfile << 1 << endl;
+					
+					settings();
+					first_start();
+
+					return check();
+					
+
+					
 
 				}
 				else
 				{
 					cout << "starting serv";
+					start();
 				}
 			}
 			else
@@ -128,12 +137,9 @@ class Server {
 		}
 
 
-		int run(int Xmx, int Xms)
-		{ }
-
 		int chooser()
 		{
-
+			 // 
 		}
 
 };
